@@ -17,6 +17,7 @@ class _ProductListState extends State {
   int productCount = 0;
 
   @override
+  // ignore: must_call_super
   void initState() {
     getProducts();
   }
@@ -29,6 +30,7 @@ class _ProductListState extends State {
       ),
       body: buildProductList(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink,
         onPressed: () {
           goToProductAdd();
         },
@@ -47,12 +49,12 @@ class _ProductListState extends State {
               elevation: 2.0,
               child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.black12,
+                    backgroundColor: Colors.yellow,
                     child: Text("p"),
                   ),
                   title: Text(product.name),
                   subtitle: Text(product.description +
-                      "-----" +
+                      "Fiyat:" +
                       product.unitPrice.toString()),
                   onTap: () {}));
         });
@@ -70,8 +72,10 @@ class _ProductListState extends State {
     var productsFuture = dbHelper.getProducts();
 
     productsFuture.then((data) {
-      this.products = data;
-      productCount = data.length;
+      setState(() {
+        this.products = data;
+        productCount = data.length;
+      });
     });
   }
 }
