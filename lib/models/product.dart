@@ -20,13 +20,10 @@ class Product {
   }
 
   Product.fromMap(dynamic o) {
-    print(o["unitPrice"]);
     this.id = o["id"];
     this.name = o["name"];
 
     this.description = o["description"];
-    if (unitPrice is int) {
-      this.unitPrice = o["unitPrice"].toDouble();
-    }
+    this.unitPrice = o["unitPrice"].toDouble();
   }
 }

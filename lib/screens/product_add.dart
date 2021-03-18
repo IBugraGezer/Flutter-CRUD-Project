@@ -17,6 +17,7 @@ class ProductAddState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Ürün Ekle")),
       body: Padding(
           padding: EdgeInsets.all(30.0),
           child: Column(
@@ -64,7 +65,7 @@ class ProductAddState extends State {
     var result = await dbHelper.insert(Product(
         name: txtName.text,
         description: txtDescription.text,
-        unitPrice: double.tryParse(txtUnitPrice.text)));
+        unitPrice: double.parse(txtUnitPrice.text)));
     Navigator.pop(context, true);
   }
 }
